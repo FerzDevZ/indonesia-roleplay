@@ -82,6 +82,15 @@ stock Vehicle_IdOf(slot) {
     return gVehId[slot];
 }
 
+// Pemilik sewa berdasarkan id kendaraan fisik (VEH_NONE kalau bukan sewaan).
+stock Vehicle_OwnerOfVehicleId(vehicleid) {
+    for (new slot = 0; slot < VEH_MAX; slot++) {
+        if (!gVehLive[slot]) continue;
+        if (gVehId[slot] == vehicleid) return gVehOwner[slot];
+    }
+    return VEH_NONE;
+}
+
 stock Vehicle_ModelOfPlayer(playerid) {
     new slot = Vehicle_SlotOf(playerid);
     if (slot == VEH_NONE) return 0;

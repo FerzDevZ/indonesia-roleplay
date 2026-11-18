@@ -275,3 +275,23 @@ stock bool:Warung_Buy(playerid, warung, slot) {
     Toast_Show(playerid, gWarName[warung], message, THEME_OK);
     return true;
 }
+
+// Perintah pemain /beli: buka panel warung terdekat. Pintasan teks untuk
+// pemain yang belum terbiasa menekan pill [Y] (help menyebut /beli).
+stock bool:Warung_HandleCommand(playerid, const command[], const params[]) {
+    #pragma unused params
+    if (strcmp(command, "beli", true) != 0) return false;
+    if (!Phase_CanAct(playerid)) {
+        Messages_SendError(playerid, MSG_NOT_ALIVE);
+        return true;
+    }
+
+    new locIndex = Locations_NearCode(playerid, LOC_ACT_WARUNG);
+    if (locIndex < 0) {
+        Messages_SendError(playerid, "Tidak ada warung di dekatmu.");
+        return true;
+    }
+    Warung_OpenMenu(playerid, locIndex);
+    return true;
+}
+

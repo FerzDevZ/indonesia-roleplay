@@ -85,7 +85,10 @@ stock bool:VehicleRental_Open(playerid) {
 static bool:VehicleRental_Rent(playerid, packageIndex) {
     if (packageIndex < 0 || packageIndex >= Rental_PackageCount()) return false;
 
-    new site = gRentalSite[playerid];
+    // Indeks lokasi bisa bergeser kalau admin menghapus titik saat dialog
+    // terbuka, jadi resolusi ulang dari posisi pemain (fallback: indeks lama).
+    new site = Locations_NearCode(playerid, LOC_ACT_RENTAL);
+    if (site < 0) site = gRentalSite[playerid];
     if (site < 0 || !Phase_CanAct(playerid)) {
         Messages_SendError(playerid, MSG_NOT_ALIVE);
         return false;

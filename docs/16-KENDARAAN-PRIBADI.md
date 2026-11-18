@@ -20,7 +20,9 @@ yang sementara).
 - Harga diambil dari tabel `vehicle_catalog`, bukan kode.
 - Uang dipotong **sebelum** INSERT; kalau DB menolak, uang dikembalikan
   otomatis (tidak ada kendaraan gratis / uang hangus).
-- Pintu terkunci untuk pemain lain saat kendaraan dikeluarkan.
+- Pintu terkunci untuk pemain lain. Pemain yang baru masuk setelah kendaraan
+  muncul tetap ditolak: `OnPlayerStateChange` menendang pengemudi bukan pemilik
+  (aturan sama untuk kendaraan rental, jadi tidak ada celah "join belakangan").
 - Kendaraan otomatis disimpan pada: `/parkir`, autosave periodik, putus
   koneksi, dan saat pemain tewas.
 
@@ -61,6 +63,14 @@ Rp 2.500.000.
 | Jumlah | 1 aktif | 3 dimiliki, 1 aktif di jalan |
 | Hapus | otomatis | manual (`/parkir` menyimpan) |
 | Sumber | `rental_packages` | `vehicle_catalog` |
+
+## Catatan pemeriksaan
+
+- `/beli` (help warung) sebelumnya hanya teks tanpa handler; sekarang benar
+  membuka panel warung terdekat.
+- Pemeriksaan sambungan otomatis: `scripts/wiring-check.sh` (ikut di
+  `scripts/gates.sh`) menolak perintah ganda, dialog tak terdaftar, dan aksi
+  lokasi tanpa dispatch/ikon.
 
 ## Belum termasuk (tahap berikut)
 

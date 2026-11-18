@@ -24,6 +24,9 @@ rental_sites(location_code, spawn_x, spawn_y, spawn_z, spawn_angle, created_at)
 
 - Seed paket hanya dijalankan **saat tabel kosong**, jadi harga yang sudah
   diubah admin tidak pernah ditimpa saat restart.
+- Titik rental hasil seed otomatis mendapat baris spawn sendiri
+  (`RENTAL_STASIUN` diisi +5 m dari lokasi) saat boot pertama, supaya `/rental`
+  tidak pernah menolak pemain dengan "spawn belum diatur admin".
 - `rental_sites.location_code` = kode lokasi rental di tabel `locations`.
   Kalau baris belum ada, posisi spawn memakai offset bawaan
   (`lokasi.x + 5.0`) supaya layanan tetap jalan.

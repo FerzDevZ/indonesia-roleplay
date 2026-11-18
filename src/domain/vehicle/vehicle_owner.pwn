@@ -139,6 +139,17 @@ stock VehicleOwned_Active(playerid) {
     return gOwnedActive[playerid];
 }
 
+// Pemilik kendaraan pribadi berdasarkan id kendaraan fisik (-1 kalau bukan).
+stock VehicleOwned_OwnerOfVehicleId(vehicleid) {
+    for (new playerid = 0; playerid < MAX_PLAYERS; playerid++) {
+        new index = gOwnedActive[playerid];
+        if (index < 0) continue;
+        if (gOwnedSpawned[playerid] != vehicleid) continue;
+        return playerid;
+    }
+    return -1;
+}
+
 // Simpan posisi & kondisi kendaraan yang sedang dipakai ke DB.
 stock VehicleOwned_Save(playerid) {
     new index = gOwnedActive[playerid];

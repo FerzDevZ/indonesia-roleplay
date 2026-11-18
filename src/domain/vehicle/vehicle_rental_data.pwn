@@ -28,6 +28,23 @@ static gRentalPackagePrice[RENTAL_PKG_MAX];
 static gRentalPackageMinutes[RENTAL_PKG_MAX];
 static gRentalPackageName[RENTAL_PKG_MAX][RENTAL_NAME_LEN];
 
+// Titik rental hasil seed wajib langsung bisa dipakai: kalau baris spawn belum
+// ada, isi dari posisi lokasinya (digeser 5 m) supaya /rental tidak menolak
+// pemain pertama dengan "spawn belum diatur admin".
+static Rental_EnsureSeedSite(const code[]) {
+    new query[192];
+    format(query, sizeof (query),
+        "SELECT COUNT(*) FROM rental_sites WHERE location_code = '%s'", code);
+    if (DB_Int(query, 0) > 0) return 1;
+
+    new locationIndex = Locations_FindByCode(code);
+    if (locationIndex < 0) return 0;
+
+    new Float:posX, Float:posY, Float:posZ;
+    Locations_Pos(locationIndex, posX, posY, posZ);
+    return Rental_SetSiteSpawn(code, posX + RENTAL_DEFAULT_OFFSET_X, posY, posZ, 0.0);
+}
+
 stock Rental_Boot() {
     if (!DB_Exec("CREATE TABLE IF NOT EXISTS rental_packages (\
             package_id INTEGER PRIMARY KEY AUTOINCREMENT,\
@@ -62,6 +79,7 @@ stock Rental_Boot() {
                  VALUES ('Van Burrito', 482, 20000, 10)");
     }
 
+    Rental_EnsureSeedSite("RENTAL_STASIUN");
     Rental_Reload();
     return 1;
 }
@@ -197,7 +215,7 @@ stock bool:Rental_SetSiteSpawn(const code[], Float:spawnX, Float:spawnY,
     Float:spawnZ, Float:angle) {
     new escaped[RENTAL_NAME_LEN * 2 + 1];
     DB_Escape(escaped, sizeof (escaped), code);
-    new query[256];
+    new query[512];
     format(query, sizeof (query),
         "INSERT INTO rental_sites (location_code, spawn_x, spawn_y, spawn_z, spawn_angle) \
          VALUES ('%s', %f, %f, %f, %f) \

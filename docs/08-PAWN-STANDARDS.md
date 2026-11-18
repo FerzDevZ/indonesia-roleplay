@@ -157,3 +157,20 @@ warning di Pawn hampir selalu berarti bug nyata (tag mismatch, unused symbol, ar
 - [ ] Kalau menyentuh uang: ada baris `money_log` dengan `reason` yang benar
 - [ ] Kalau menyentuh waktu/timer: terdaftar di `Timer_Boot()`
 - [ ] Kalau menyentuh UI: diuji di client 0.3.7, bukan hanya 0.3.DL
+
+## Gate sambungan modul (`scripts/wiring-check.sh`)
+
+Compiler tidak bisa menangkap perintah yang tidak pernah dicapai, dialog yang
+ditolak `Dialog_IsKnown`, atau aksi lokasi tanpa dispatch. Karena itu gate ini
+wajib lolos bersama build:
+
+1. **Satu perintah satu pemilik.** Nama perintah yang muncul di dua file berbeda
+   ditolak, karena handler pertama di `callbacks.pwn` selalu menang dan handler
+   kedua menjadi kode mati.
+2. **/help = kenyataan.** Setiap perintah yang disebut di bantuan wajib punya
+   handler.
+3. **Dialog terdaftar.** Setiap `DIALOG_*` yang dipakai `ShowPlayerDialog` wajib
+   ada di `Dialog_IsKnown`, kalau tidak `OnDialogResponse` menolaknya.
+4. **Aksi lokasi lengkap.** Setiap `LOC_ACT_*` wajib punya dispatch dan ikon
+   radar (ikon dinamis gedung dan ikon bawaan loket PD dikecualikan eksplisit).
+

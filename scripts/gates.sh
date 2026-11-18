@@ -28,6 +28,9 @@ if [ -d src ]; then
     check "tanpa fopen di domain" bash -c '! grep -rn "fopen(" src/domain'
     check "dialog id dari enum" bash -c '! grep -rnE "ShowPlayerDialog\([^,]+, *[0-9]+," src/'
     check "tanpa stub" bash -c '! grep -rn "TODO\|FIXME\|implement later" src/'
+    # Sambungan modul: perintah ganda, dialog tak terdaftar, aksi lokasi tanpa
+    # dispatch/ikon. Bug jenis ini lolos compiler tapi mati saat dimainkan.
+    check "wiring modul" ./scripts/wiring-check.sh
     check "file <= 400 baris" bash -c '! find src -name "*.pwn" -exec wc -l {} + | awk "\$2 != \"total\" && \$1 > 400 {print; found=1} END {exit !found}"'
     # Semua warna UI wajib lewat token ui/theme (satu sumber kebenaran).
     # trxtdraw bebas karena hanya memakai warna yang dikirim pemanggil;

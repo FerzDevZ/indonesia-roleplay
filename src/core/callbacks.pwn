@@ -114,6 +114,31 @@ public OnPlayerDeath(playerid, killerid, WEAPON:reason) {
     return 1;
 }
 
+public OnPlayerStateChange(playerid, PLAYER_STATE:newstate, PLAYER_STATE:oldstate) {
+    #pragma unused oldstate
+    if (newstate != PLAYER_STATE_DRIVER) return 1;
+
+    // Kunci pintu hanya dipasang saat kendaraan muncul, jadi pemain yang baru
+    // masuk setelahnya bisa mencoba membajak. Tolak di titik masuk kendaraan.
+    new vehicleid = GetPlayerVehicleID(playerid);
+    if (vehicleid == INVALID_VEHICLE_ID) return 1;
+
+    new owner = Vehicle_OwnerOfVehicleId(vehicleid);
+    if (owner != VEH_NONE && owner != playerid) {
+        RemovePlayerFromVehicle(playerid);
+        Messages_SendError(playerid, "Kendaraan ini milik orang lain.");
+        return 1;
+    }
+
+    owner = VehicleOwned_OwnerOfVehicleId(vehicleid);
+    if (owner >= 0 && owner != playerid) {
+        RemovePlayerFromVehicle(playerid);
+        Messages_SendError(playerid, "Kendaraan ini milik orang lain.");
+        return 1;
+    }
+    return 1;
+}
+
 public OnPlayerFinishedDownloading(playerid, virtualworld) {
     // Hanya client 0.3.DL yang mengirim callback ini.
     ClientTier_Set(playerid, TIER_DL);
@@ -224,6 +249,7 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
 
     if (Chat_HandleCommand(playerid, command, params)) return 1;
     if (World_HandleCommand(playerid, command, params)) return 1;
+    if (Warung_HandleCommand(playerid, command, params)) return 1;
     if (Inv_HandleCommand(playerid, command, params)) return 1;
     if (Survival_HandleCommand(playerid, command, params)) return 1;
     if (VehicleRental_HandleCommand(playerid, command, params)) return 1;
