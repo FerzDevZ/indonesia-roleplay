@@ -19,6 +19,7 @@ static Locations_MapIconOf(const action[]) {
     if (strcmp(action, LOC_ACT_WARUNG, false) == 0) return LOC_MAP_ICON_WARUNG;
     if (strcmp(action, LOC_ACT_RS, false) == 0) return LOC_MAP_ICON_RS;
     if (strcmp(action, LOC_ACT_JOB_CENTER, false) == 0) return LOC_MAP_ICON_JOB;
+    if (strcmp(action, LOC_ACT_RENTAL, false) == 0) return LOC_MAP_ICON_RENTAL;
     return LOC_MAP_ICON_INFO;
 }
 
@@ -84,6 +85,9 @@ stock bool:Locations_Activate(playerid, index) {
     }
     if (strcmp(action, LOC_ACT_GEDUNG, false) == 0) {
         return Property_OpenAt(playerid, index);
+    }
+    if (strcmp(action, LOC_ACT_RENTAL, false) == 0) {
+        return VehicleRental_Open(playerid);
     }
     if (strcmp(action, LOC_ACT_RS, false) == 0) {
         new Float:health;

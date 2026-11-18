@@ -120,3 +120,10 @@ Pola seragam: tabel `job_progress` (character_id, job_code, level, xp), titik ke
 
 Setiap langkah: tabel → API data → world dressing → UI → admin command → gate →
 build+gates+hapus server+uji in-game → catat invariant di `MEMORY.md`.
+
+## 7. Status kendaraan (diperbarui)
+
+Rental kendaraan **v1 SELESAI** (lihat `docs/15-KENDARAAN-RENTAL.md`): paket
+sewa dinamis dari DB, titik rental dibuat admin in-game, batas waktu, kunci
+pintu, dan pembersihan otomatis. Belum masuk: kendaraan pribadi, STNK, pajak,
+garasi, bahan bakar - semuanya menumpang modul `vehicle.pwn` yang sama.

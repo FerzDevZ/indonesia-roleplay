@@ -50,6 +50,7 @@ public OnPlayerConnect(playerid) {
 }
 
 public OnPlayerDisconnect(playerid, reason) {
+    Vehicle_DespawnOf(playerid);
     Survival_Save(playerid);
     Character_Save(playerid);
 
@@ -101,6 +102,13 @@ public OnPlayerSpawn(playerid) {
     return 1;
 }
 
+public OnPlayerDeath(playerid, killerid, WEAPON:reason) {
+    #pragma unused killerid, reason
+    // Kendaraan sewaan hilang saat pemain tewas: mencegah kendaraan telantar.
+    Vehicle_DespawnOf(playerid);
+    return 1;
+}
+
 public OnPlayerFinishedDownloading(playerid, virtualworld) {
     // Hanya client 0.3.DL yang mengirim callback ini.
     ClientTier_Set(playerid, TIER_DL);
@@ -119,6 +127,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
     if (Identity_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (BankUI_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (Property_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
+    if (VehicleRental_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (Admin_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     return 0;
 }
@@ -211,6 +220,8 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
     if (World_HandleCommand(playerid, command, params)) return 1;
     if (Inv_HandleCommand(playerid, command, params)) return 1;
     if (Survival_HandleCommand(playerid, command, params)) return 1;
+    if (VehicleRental_HandleCommand(playerid, command, params)) return 1;
+    if (VehicleRentalAdmin_HandleCommand(playerid, command, params)) return 1;
     if (Identity_HandleCommand(playerid, command, params)) return 1;
     if (Tilang_HandleCommand(playerid, command, params)) return 1;
     if (WarungAdmin_HandleCommand(playerid, command, params)) return 1;
@@ -282,6 +293,7 @@ public Timer_OnPromptTick() {
     Toast_Animate();
     Inv_Tick();
     Survival_Tick();
+    Vehicle_Tick();
     // Buka layanan lokasi yang pickup-nya disentuh tick sebelumnya (di luar
     // callback pickup - aman untuk client, mencegah force close).
     for (new playerid = 0; playerid < MAX_PLAYERS; playerid++) {

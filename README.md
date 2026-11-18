@@ -14,6 +14,8 @@ tanpa plugin dan tanpa YSI. Satu server melayani klien **open.mp 1.6.x** dan
 - Warung & gedung data-driven: beli, kelola, menu, kas toko, buka/tutup.
 - Interior custom per gedung (blueprint geometri, lihat `docs/13`).
 - Pekerjaan kurir, layanan ATM, rumah sakit, job center, ikon radar.
+- Rental kendaraan dinamis: paket & titik sewa diatur admin in-game, batas
+  waktu, kunci pintu, pembersihan otomatis (`docs/15`).
 - Admin: level 1-5, audit setiap tindakan, pembuatan ATM/warung/gedung runtime.
 
 ## Teknologi
@@ -73,3 +75,4 @@ Ringkasnya (lengkap di `docs/08-PAWN-STANDARDS.md`):
 | `docs/12-RENCANA-POWERFUL.md` | roadmap fitur |
 | `docs/13-MAPPING-INTERIOR.md` | geometri mapping interior |
 | `docs/14-FRAKSI-RANCANGAN.md` | rancangan fraksi (PD/EMS/gang) |
+| `docs/15-KENDARAAN-RENTAL.md` | kendaraan sewaan dinamis |

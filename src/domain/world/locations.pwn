@@ -27,6 +27,7 @@
 #define LOC_MAP_ICON_RS     (22)    // ikon palang RS
 #define LOC_MAP_ICON_JOB    (30)    // ikon tanda tanya
 #define LOC_MAP_ICON_INFO   (17)    // ikon info
+#define LOC_MAP_ICON_RENTAL (55)    // ikon mobil (titik rental)
 
 // Model pickup fisik di dunia (terlihat & bisa disentuh = buka layanan).
 #define LOC_PICKUP_ATM      (1274)  // ikon dollar berputar
@@ -48,6 +49,7 @@
 #define LOC_ACT_WARUNG      "WARUNG"
 #define LOC_ACT_GEDUNG      "GEDUNG"
 #define LOC_ACT_RS          "RS"
+#define LOC_ACT_RENTAL      "RENTAL"
 
 #define RS_PRICE            (10000)
 
@@ -82,6 +84,8 @@ stock Locations_Boot() {
         1796.0, -1890.0, 13.5, 3.0);
     Locations_Seed("RS_ALL_SAINTS", "RS All Saints", LOC_ACT_RS,
         1173.0, -1323.5, 15.0, 4.0);
+    Locations_Seed("RENTAL_STASIUN", "Rental Stasiun Unity", LOC_ACT_RENTAL,
+        1766.4, -1906.0, 13.5, 3.0);
 
     gLocCount = 0;
     new query[128];
@@ -193,6 +197,44 @@ stock Locations_SetLabelHandle(index, Text3D:label) {
         Delete3DTextLabel(gLocLabelId[index]);
     }
     gLocLabelId[index] = label;
+    return 1;
+}
+
+// Hapus lokasi (dipakai admin saat membongkar titik layanan). Wujud dunia
+// dibersihkan dulu, baris DB dihapus, lalu array dimampatkan.
+stock Locations_Delete(index) {
+    if (index < 0 || index >= gLocCount) return 0;
+
+    new query[128];
+    format(query, sizeof (query), "DELETE FROM locations WHERE code = '%s'",
+        gLocCode[index]);
+    if (!DB_Exec(query)) {
+        Log_Error("locations", "gagal hapus lokasi");
+        return 0;
+    }
+
+    if (gLocPickupId[index] > 0) DestroyPickup(gLocPickupId[index]);
+    if (gLocLabelId[index] != Text3D:INVALID_3DTEXT_ID) {
+        Delete3DTextLabel(gLocLabelId[index]);
+    }
+    if (gLocObjectId[index] != INVALID_OBJECT_ID) {
+        DestroyObject(gLocObjectId[index]);
+    }
+
+    for (new move = index; move < gLocCount - 1; move++) {
+        format(gLocCode[move], LOC_CODE_LEN, "%s", gLocCode[move + 1]);
+        format(gLocName[move], LOC_NAME_LEN, "%s", gLocName[move + 1]);
+        format(gLocAction[move], LOC_ACTION_LEN, "%s", gLocAction[move + 1]);
+        gLocX[move] = gLocX[move + 1];
+        gLocY[move] = gLocY[move + 1];
+        gLocZ[move] = gLocZ[move + 1];
+        gLocRadius[move] = gLocRadius[move + 1];
+        gLocPickupId[move] = gLocPickupId[move + 1];
+        gLocLabelId[move] = gLocLabelId[move + 1];
+        gLocObjectId[move] = gLocObjectId[move + 1];
+    }
+    gLocCount--;
+    Locations_RefreshIconsAll();
     return 1;
 }
 

@@ -38,6 +38,7 @@
 #define DIALOG_PROP_PRICE       (15)  // kelola gedung: isi harga baru
 #define DIALOG_PROP_ADDITEM     (16)  // kelola gedung: tambah menu (KODE harga)
 #define DIALOG_PROP_SALE        (17)  // gedung dijual: konfirmasi beli
+#define DIALOG_RENTAL_LIST      (18)  // rental kendaraan: pilih paket
 
 
 #define MSG_WELCOME         "Selamat datang, %s. Silakan login."

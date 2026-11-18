@@ -129,6 +129,8 @@ static bool:Chat_HelpMain(playerid) {
     Messages_SendSystem(playerid,
         "Tubuh: /makan /minum /tubuh /tidur (tidur di dalam gedung)");
     Messages_SendSystem(playerid,
+        "Kendaraan: /rental /kendaraan /kembalikan (titik rental di radar)");
+    Messages_SendSystem(playerid,
         "Dokumen: /ktp /sim /ujisim /datadiri | Lalu lintas: /tilang");
     Messages_SendSystem(playerid,
         "Bantuan lain: /help toko | /help admin | /lapor <masalah>");
@@ -178,6 +180,12 @@ static bool:Chat_HelpAdmin(playerid) {
         "Gedung lain: /setinterior <0-2> (berdiri dekat gedung)");
     Messages_SendSystem(playerid,
         "Menu warung: /tambahmenu /setharga /hapusmenu /bukawarung");
+    Messages_SendSystem(playerid,
+        "Rental: /buatrental <nama> | /rentalspawn (posisi mobil) | /hapusrental");
+    Messages_SendSystem(playerid,
+        "Paket rental: /rentalpkg | /rentalpkg tambah 462 5000 5 Motor Faggio");
+    Messages_SendSystem(playerid,
+        "  /rentalpkg hapus <nomor> | /rentalreload (setelah edit DB manual)");
     Messages_SendSystem(playerid,
         "Pemain: /agive <id> <jumlah> | /beriitem <id> <item> <jumlah>");
     Messages_SendSystem(playerid,

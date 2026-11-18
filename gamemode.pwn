@@ -65,6 +65,11 @@
 #include "src/domain/admin/admin.pwn"
 #include "src/domain/warung/warung.pwn"
 #include "src/domain/property/property.pwn"
+// kendaraan: inti pool + data rental (DB) + layanan sewa + perintah admin.
+#include "src/domain/vehicle/vehicle.pwn"
+#include "src/domain/vehicle/vehicle_rental_data.pwn"
+#include "src/domain/vehicle/vehicle_rental.pwn"
+#include "src/domain/vehicle/vehicle_rental_admin.pwn"
 // interiors butuh API Property_*; property_manage butuh Interiors_*.
 #include "src/domain/world/interiors.pwn"
 #include "src/domain/warung/warung_admin.pwn"
@@ -112,6 +117,8 @@ main() {
     Warung_Boot();
     Property_Boot();
     Interiors_Boot();
+    Vehicle_Boot();
+    VehicleRental_Boot();
     Admin_Boot();
 
     Log_Info("boot", "siap");
