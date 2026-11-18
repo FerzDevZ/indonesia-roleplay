@@ -22,6 +22,7 @@ penting karena dokumen berikutnya bergantung pada keputusan di atasnya.
 | 17 | [Musik & Radio](17-MUSIK-RADIO.md) | radio in-game (audio nyata) + rencana hybrid Spotify | Fitur musik |
 | 18 | [Bensin, Servis, Objektif](18-BENSIN-SERVIS-OBJEKTIF.md) | penguras uang kendaraan + 5 objektif pemain baru | Ekonomi & onboarding |
 | 19 | [Latihan Tembak](19-LATIHAN-TEMBAK.md) | arena tembak virtual world, skor server-side, `/rekor` | Fitur & anti-curang |
+| 20 | [Rencana Induk Fase E](20-RENCANA-FASE-E.md) | rancangan 6 fase: hukum, pekerjaan, properti, ekonomi, sosial, live ops | Peta jalan |
 | 12 | [Rencana Powerful](12-RENCANA-POWERFUL.md) | roadmap fitur lanjutan |
 | 11 | [ALUR-PLAYER](11-ALUR-PLAYER.md) | Alur pemain utuh: 15 menit pertama, 4 loop, tangga progresi, peta lokasi, urutan fase terkoreksi | Menentukan fase berikutnya |
 

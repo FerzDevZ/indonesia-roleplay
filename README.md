@@ -89,3 +89,4 @@ Ringkasnya (lengkap di `docs/08-PAWN-STANDARDS.md`):
 | `docs/17-MUSIK-RADIO.md` | radio in-game & rencana hybrid Spotify |
 | `docs/18-BENSIN-SERVIS-OBJEKTIF.md` | bensin, servis, objektif pemain baru |
 | `docs/19-LATIHAN-TEMBAK.md` | arena latihan tembak & anti-curang skor |
+| `docs/20-RENCANA-FASE-E.md` | rencana induk 6 fase (hukum, fraksi, properti, ekonomi) |
