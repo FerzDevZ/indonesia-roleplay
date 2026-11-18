@@ -40,8 +40,8 @@
 // Daftar aplikasi: 4 baris flat di bawah widget jam.
 #define PHONE_APP_X         (PHONEC_X + 10.0)
 #define PHONE_APP_W         (PHONEC_W - 20.0)
-#define PHONE_APP_H         (36.0)
-#define PHONE_APP_STEP      (44.0)
+#define PHONE_APP_H         (32.0)
+#define PHONE_APP_STEP      (36.0)
 #define PHONE_APP_Y1        (PHONEC_Y + 92.0)
 
 // Nama bulan Indonesia untuk tanggal di bawah jam widget.
@@ -217,6 +217,8 @@ static PhoneDraw_AppList(playerid, Float:chipR) {
         "SETING", THEME_ACCENT, PHONEUI_ID_SETTINGS, "S", chipR);
     PhoneDraw_AppRow(playerid, PHONE_APP_Y1 + PHONE_APP_STEP * 3.0,
         "KERJA", THEME_WARN, PHONEUI_ID_KERJA, "J", chipR);
+    PhoneDraw_AppRow(playerid, PHONE_APP_Y1 + PHONE_APP_STEP * 4.0,
+        "MUSIK", THEME_MUTED, PHONEUI_ID_RADIO, "M", chipR);
     return 1;
 }
 

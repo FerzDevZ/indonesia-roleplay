@@ -17,6 +17,9 @@ penting karena dokumen berikutnya bergantung pada keputusan di atasnya.
 | 10 | [UI-UX-ROADMAP](10-UI-UX-ROADMAP.md) | Peta UI/UX: modal manager, HUD, katalog fitur P1-P5, ergonomi Android | Membangun UI baru |
 | 13 | [Mapping Interior](13-MAPPING-INTERIOR.md) | aturan geometri blueprint interior |
 | 14 | [Rancangan Fraksi](14-FRAKSI-RANCANGAN.md) | desain lengkap PD/EMS/PEMKOT/gang, data model, tahapan |
+| 15 | [Kendaraan Rental](15-KENDARAAN-RENTAL.md) | rental dinamis: paket, lokasi, ephemeral pool | Menjual/menyewa kendaraan |
+| 16 | [Kendaraan Pribadi](16-KENDARAAN-PRIBADI.md) | dealer, STNK, parkir, kepemilikan permanen | Kendaraan milik pemain |
+| 17 | [Musik & Radio](17-MUSIK-RADIO.md) | radio in-game (audio nyata) + rencana hybrid Spotify | Fitur musik |
 | 12 | [Rencana Powerful](12-RENCANA-POWERFUL.md) | roadmap fitur lanjutan |
 | 11 | [ALUR-PLAYER](11-ALUR-PLAYER.md) | Alur pemain utuh: 15 menit pertama, 4 loop, tangga progresi, peta lokasi, urutan fase terkoreksi | Menentukan fase berikutnya |
 

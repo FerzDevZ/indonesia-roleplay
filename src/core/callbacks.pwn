@@ -53,6 +53,7 @@ public OnPlayerDisconnect(playerid, reason) {
     Vehicle_DespawnOf(playerid);
     VehicleOwned_Save(playerid);
     VehicleOwned_Reset(playerid);
+    Radio_Reset(playerid);
     Survival_Save(playerid);
     Character_Save(playerid);
 
@@ -98,6 +99,7 @@ public OnPlayerSpawn(playerid) {
         HUD_Show(playerid);
         Inv_Load(playerid);
         VehicleOwned_Load(playerid, Character_GetId(playerid));
+        Radio_Load(playerid);
         Survival_OnSpawn(playerid);
         Interiors_Reset(playerid);
         Toast_Show(playerid, "SELAMAT DATANG", "Jalani roleplay dengan baik.", THEME_ACCENT);
@@ -111,6 +113,7 @@ public OnPlayerDeath(playerid, killerid, WEAPON:reason) {
     Vehicle_DespawnOf(playerid);
     VehicleOwned_Save(playerid);
     VehicleOwned_Destroy(playerid);
+    Radio_Stop(playerid);
     return 1;
 }
 
@@ -159,6 +162,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
     if (Property_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (VehicleRental_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (VehicleShop_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
+    if (Radio_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (Admin_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     return 0;
 }
@@ -255,6 +259,7 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
     if (VehicleRental_HandleCommand(playerid, command, params)) return 1;
     if (VehicleRentalAdmin_HandleCommand(playerid, command, params)) return 1;
     if (VehicleShop_HandleCommand(playerid, command, params)) return 1;
+    if (Radio_HandleCommand(playerid, command, params)) return 1;
     if (VehicleShop_AdminCommand(playerid, command, params)) return 1;
     if (Identity_HandleCommand(playerid, command, params)) return 1;
     if (Tilang_HandleCommand(playerid, command, params)) return 1;

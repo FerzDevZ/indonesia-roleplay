@@ -74,6 +74,9 @@
 #include "src/domain/vehicle/vehicle_catalog.pwn"
 #include "src/domain/vehicle/vehicle_owner.pwn"
 #include "src/domain/vehicle/vehicle_shop.pwn"
+// media: radio in-game (audio stream), data-driven dari DB.
+#include "src/domain/media/radio_data.pwn"
+#include "src/domain/media/radio.pwn"
 // interiors butuh API Property_*; property_manage butuh Interiors_*.
 #include "src/domain/world/interiors.pwn"
 #include "src/domain/warung/warung_admin.pwn"
@@ -125,6 +128,7 @@ main() {
     VehicleCatalog_Boot();
     VehicleOwned_Boot();
     VehicleRental_Boot();
+    Radio_Boot();
     Admin_Boot();
 
     Log_Info("boot", "siap");

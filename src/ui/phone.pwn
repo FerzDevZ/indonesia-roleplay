@@ -31,6 +31,7 @@
 #define PHONEUI_ID_BACK        (275)
 #define PHONEUI_ID_SET_SKIN    (276)
 #define PHONEUI_ID_SET_TOAST   (277)
+#define PHONEUI_ID_RADIO      (278)
 
 #define PHONE_SCREEN_HOME      (0)
 #define PHONE_SCREEN_SETTINGS  (1)
@@ -287,6 +288,11 @@ stock bool:PhoneUI_OnClick(playerid, PlayerText:clicked) {
         case PHONEUI_ID_KERJA: {
             UIModal_Close(playerid);
             World_ShowJobStatus(playerid);
+            return true;
+        }
+        case PHONEUI_ID_RADIO: {
+            UIModal_Close(playerid);
+            Radio_Open(playerid);
             return true;
         }
         case PHONEUI_ID_SETTINGS: {
