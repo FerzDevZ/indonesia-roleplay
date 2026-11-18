@@ -52,8 +52,10 @@ public OnPlayerConnect(playerid) {
 public OnPlayerDisconnect(playerid, reason) {
     Vehicle_DespawnOf(playerid);
     VehicleOwned_Save(playerid);
+    Fuel_SaveOwned(playerid);
     VehicleOwned_Reset(playerid);
     Radio_Reset(playerid);
+    Onboarding_Reset(playerid);
     Survival_Save(playerid);
     Character_Save(playerid);
 
@@ -100,6 +102,8 @@ public OnPlayerSpawn(playerid) {
         Inv_Load(playerid);
         VehicleOwned_Load(playerid, Character_GetId(playerid));
         Radio_Load(playerid);
+        Fuel_LoadOwned(playerid, Character_GetId(playerid));
+        Onboarding_Load(playerid, Character_GetId(playerid));
         Survival_OnSpawn(playerid);
         Interiors_Reset(playerid);
         Toast_Show(playerid, "SELAMAT DATANG", "Jalani roleplay dengan baik.", THEME_ACCENT);
@@ -260,6 +264,8 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
     if (VehicleRentalAdmin_HandleCommand(playerid, command, params)) return 1;
     if (VehicleShop_HandleCommand(playerid, command, params)) return 1;
     if (Radio_HandleCommand(playerid, command, params)) return 1;
+    if (Fuel_HandleCommand(playerid, command, params)) return 1;
+    if (Onboarding_HandleCommand(playerid, command, params)) return 1;
     if (VehicleShop_AdminCommand(playerid, command, params)) return 1;
     if (Identity_HandleCommand(playerid, command, params)) return 1;
     if (Tilang_HandleCommand(playerid, command, params)) return 1;
@@ -287,6 +293,7 @@ public Timer_OnAutoSave() {
     for (new index = 0; index < count; index++) {
         if (Character_GetId(players[index]) > 0) {
             VehicleOwned_Save(players[index]);
+            Fuel_SaveOwned(players[index]);
             Character_Save(players[index]);
         }
     }

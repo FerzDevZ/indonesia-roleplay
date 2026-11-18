@@ -21,6 +21,8 @@ forward Timer_OnTelemetryTick();
 forward Timer_OnHudTick();
 forward Timer_OnToastTick();
 forward Timer_OnPromptTick();
+forward Timer_OnFuelTick();
+forward Timer_OnOnboardingTick();
 
 #define MAX_REGISTERED_TIMERS (16)
 

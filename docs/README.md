@@ -20,6 +20,7 @@ penting karena dokumen berikutnya bergantung pada keputusan di atasnya.
 | 15 | [Kendaraan Rental](15-KENDARAAN-RENTAL.md) | rental dinamis: paket, lokasi, ephemeral pool | Menjual/menyewa kendaraan |
 | 16 | [Kendaraan Pribadi](16-KENDARAAN-PRIBADI.md) | dealer, STNK, parkir, kepemilikan permanen | Kendaraan milik pemain |
 | 17 | [Musik & Radio](17-MUSIK-RADIO.md) | radio in-game (audio nyata) + rencana hybrid Spotify | Fitur musik |
+| 18 | [Bensin, Servis, Objektif](18-BENSIN-SERVIS-OBJEKTIF.md) | penguras uang kendaraan + 5 objektif pemain baru | Ekonomi & onboarding |
 | 12 | [Rencana Powerful](12-RENCANA-POWERFUL.md) | roadmap fitur lanjutan |
 | 11 | [ALUR-PLAYER](11-ALUR-PLAYER.md) | Alur pemain utuh: 15 menit pertama, 4 loop, tangga progresi, peta lokasi, urutan fase terkoreksi | Menentukan fase berikutnya |
 

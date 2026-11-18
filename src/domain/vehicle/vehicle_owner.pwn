@@ -139,6 +139,12 @@ stock VehicleOwned_Active(playerid) {
     return gOwnedActive[playerid];
 }
 
+// Id kendaraan fisik yang sedang keluar untuk pemain ini (0 kalau tidak ada).
+stock VehicleOwned_VehicleIdOf(playerid) {
+    if (playerid < 0 || playerid >= MAX_PLAYERS) return INVALID_VEHICLE_ID;
+    return gOwnedSpawned[playerid];
+}
+
 // Pemilik kendaraan pribadi berdasarkan id kendaraan fisik (-1 kalau bukan).
 stock VehicleOwned_OwnerOfVehicleId(vehicleid) {
     for (new playerid = 0; playerid < MAX_PLAYERS; playerid++) {

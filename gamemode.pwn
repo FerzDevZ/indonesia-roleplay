@@ -25,6 +25,8 @@
 #include "src/ui/trxtdraw.pwn"
 #include "src/ui/toast.pwn"
 #include "src/ui/uimodal.pwn"
+// onboarding: objektif 5 langkah untuk pemain baru (punya HUD sendiri).
+#include "src/domain/onboarding.pwn"
 #include "src/ui/welcome.pwn"
 #include "src/ui/hud.pwn"
 #include "src/ui/charselect.pwn"
@@ -48,6 +50,7 @@
 #include "src/domain/character/character_create.pwn"
 #include "src/domain/chat/chat.pwn"
 #include "src/domain/world/locations.pwn"
+#include "src/domain/world/locations_seed.pwn"
 #include "src/domain/world/locations_label.pwn"
 #include "src/domain/world/locations_actions.pwn"
 #include "src/domain/identity.pwn"
@@ -74,6 +77,7 @@
 #include "src/domain/vehicle/vehicle_catalog.pwn"
 #include "src/domain/vehicle/vehicle_owner.pwn"
 #include "src/domain/vehicle/vehicle_shop.pwn"
+#include "src/domain/vehicle/vehicle_fuel.pwn"
 // media: radio in-game (audio stream), data-driven dari DB.
 #include "src/domain/media/radio_data.pwn"
 #include "src/domain/media/radio.pwn"
@@ -127,8 +131,10 @@ main() {
     Vehicle_Boot();
     VehicleCatalog_Boot();
     VehicleOwned_Boot();
+    Fuel_Boot();
     VehicleRental_Boot();
     Radio_Boot();
+    Onboarding_Boot();
     Admin_Boot();
 
     Log_Info("boot", "siap");

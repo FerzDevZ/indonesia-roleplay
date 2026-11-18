@@ -206,6 +206,7 @@ stock bool:PhoneUI_Open(playerid) {
 
     gPhoneOpen[playerid] = true;
     SelectTextDraw(playerid, THEME_ACCENT);
+    Onboarding_Event(playerid, ONBOARD_PHONE);
     return true;
 }
 

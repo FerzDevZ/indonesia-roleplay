@@ -273,6 +273,7 @@ stock bool:Warung_Buy(playerid, warung, slot) {
     format(message, sizeof (message), "Beli %s - %s. Masuk tas.", itemName,
         priceText);
     Toast_Show(playerid, gWarName[warung], message, THEME_OK);
+    Onboarding_Event(playerid, ONBOARD_FOOD);
     return true;
 }
 

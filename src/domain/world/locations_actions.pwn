@@ -21,6 +21,8 @@ static Locations_MapIconOf(const action[]) {
     if (strcmp(action, LOC_ACT_JOB_CENTER, false) == 0) return LOC_MAP_ICON_JOB;
     if (strcmp(action, LOC_ACT_RENTAL, false) == 0) return LOC_MAP_ICON_RENTAL;
     if (strcmp(action, LOC_ACT_DEALER, false) == 0) return LOC_MAP_ICON_DEALER;
+    if (strcmp(action, LOC_ACT_BENSIN, false) == 0) return LOC_MAP_ICON_BENSIN;
+    if (strcmp(action, LOC_ACT_BENGKEL, false) == 0) return LOC_MAP_ICON_BENGKEL;
     return LOC_MAP_ICON_INFO;
 }
 
@@ -106,6 +108,16 @@ stock bool:Locations_Activate(playerid, index) {
         }
         SetPlayerHealth(playerid, 100.0);
         Toast_Show(playerid, "RUMAH SAKIT", "Kamu sudah dirawat. HP penuh.", THEME_OK);
+        return true;
+    }
+    if (strcmp(action, LOC_ACT_BENSIN, false) == 0) {
+        Messages_SendSystem(playerid,
+            "Pom bensin: ketik /isi penuh atau /isi <liter> untuk mengisi tangki.");
+        return true;
+    }
+    if (strcmp(action, LOC_ACT_BENGKEL, false) == 0) {
+        Messages_SendSystem(playerid,
+            "Bengkel: ketik /servis untuk memperbaiki kendaraanmu.");
         return true;
     }
     if (strcmp(action, LOC_ACT_LOKET_PD, false) == 0) {

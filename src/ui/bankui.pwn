@@ -69,7 +69,9 @@ stock bool:BankUI_IsOpen(playerid) {
 }
 
 stock bool:BankUI_OpenAtm(playerid) {
-    return BankUI_Open(playerid, BANK_SRC_ATM);
+    if (!BankUI_Open(playerid, BANK_SRC_ATM)) return false;
+    Onboarding_Event(playerid, ONBOARD_ATM);
+    return true;
 }
 
 stock bool:BankUI_OpenPhone(playerid) {

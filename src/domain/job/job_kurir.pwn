@@ -88,6 +88,7 @@ static bool:JobKurir_Assign(playerid) {
 
     gKurirState[playerid] = KURIR_STATE_CARRYING;
     gKurirTarget[playerid] = candidate;
+    Onboarding_Event(playerid, ONBOARD_JOB);
     return true;
 }
 
@@ -117,6 +118,7 @@ stock bool:JobKurir_Deliver(playerid) {
     gKurirState[playerid] = KURIR_STATE_IDLE;
     gKurirTarget[playerid] = -1;
     DisablePlayerCheckpoint(playerid);
+    Onboarding_Event(playerid, ONBOARD_DELIVER);
     return true;
 }
 

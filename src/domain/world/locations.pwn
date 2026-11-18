@@ -51,8 +51,12 @@
 #define LOC_ACT_RS          "RS"
 #define LOC_ACT_RENTAL      "RENTAL"
 #define LOC_ACT_DEALER      "DEALER"
+#define LOC_ACT_BENSIN      "BENSIN"
+#define LOC_ACT_BENGKEL     "BENGKEL"
 
 #define LOC_MAP_ICON_DEALER (55)    // ikon mobil (dealer)
+#define LOC_MAP_ICON_BENSIN (52)    // ikon dolar: layanan berbayar (bensin)
+#define LOC_MAP_ICON_BENGKEL (55)   // ikon mobil: perbaikan kendaraan
 
 #define RS_PRICE            (10000)
 
@@ -70,27 +74,11 @@ static gLocPickupId[LOC_MAX];
 static Text3D:gLocLabelId[LOC_MAX];
 static gLocObjectId[LOC_MAX];
 
+forward Locations_SeedDefaults();
+
 stock Locations_Boot() {
-    // Seed bawaan: INSERT OR IGNORE, jadi posisi di DB tidak pernah ditimpa.
-    // Pemilik server bebas memindah/menambah lokasi lewat DB tanpa compile.
-    Locations_Seed("ATM_STASIUN", "ATM Stasiun Unity", LOC_ACT_ATM,
-        1770.5, -1896.0, 13.5, 3.0);
-    Locations_Seed("ATM_IDLEWOOD", "ATM Idlewood", LOC_ACT_ATM,
-        1834.5, -1853.0, 13.5, 3.0);
-    Locations_Seed("ATM_JEFFERSON", "ATM Jefferson", LOC_ACT_ATM,
-        2087.0, -1394.0, 15.0, 3.0);
-    Locations_Seed("LOKET_PD", "Loket PD", LOC_ACT_LOKET_PD,
-        1552.51, -1675.73, 15.5, 30.0);
-    Locations_Seed("JOB_CENTER", "Job Center", LOC_ACT_JOB_CENTER,
-        1782.0, -1894.0, 13.5, 4.0);
-    Locations_Seed("WARUNG_STASIUN", "Warung Bu Sari", LOC_ACT_WARUNG,
-        1796.0, -1890.0, 13.5, 3.0);
-    Locations_Seed("RS_ALL_SAINTS", "RS All Saints", LOC_ACT_RS,
-        1173.0, -1323.5, 15.0, 4.0);
-    Locations_Seed("RENTAL_STASIUN", "Rental Stasiun Unity", LOC_ACT_RENTAL,
-        1766.4, -1906.0, 13.5, 3.0);
-    Locations_Seed("DEALER_STASIUN", "Dealer Stasiun Unity", LOC_ACT_DEALER,
-        1750.0, -1898.0, 13.5, 3.0);
+    // Seed bawaan ada di locations_seed.pwn (INSERT OR IGNORE, tidak menimpa DB).
+    Locations_SeedDefaults();
 
     gLocCount = 0;
     new query[128];
@@ -123,7 +111,7 @@ stock Locations_Boot() {
     return 1;
 }
 
-static Locations_Seed(const code[], const name[], const action[],
+stock Locations_Seed(const code[], const name[], const action[],
     Float:x, Float:y, Float:z, Float:radius) {
     new escapedName[LOC_NAME_LEN * 2 + 1];
     DB_Escape(escapedName, sizeof (escapedName), name);

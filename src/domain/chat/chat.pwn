@@ -135,6 +135,9 @@ static bool:Chat_HelpMain(playerid) {
     Messages_SendSystem(playerid,
         "Musik: /radio (pilih stasiun) /musik on|off /radiostop");
     Messages_SendSystem(playerid,
+        "Kendaraan: /isi penuh di pom bensin, /servis di bengkel");
+    Messages_SendSystem(playerid, "Tujuan awal: /tujuan");
+    Messages_SendSystem(playerid,
         "Dokumen: /ktp /sim /ujisim /datadiri | Lalu lintas: /tilang");
     Messages_SendSystem(playerid,
         "Bantuan lain: /help toko | /help admin | /lapor <masalah>");
@@ -194,6 +197,8 @@ static bool:Chat_HelpAdmin(playerid) {
         "Dealer: /dealerkatalog | tambah <model> <harga> <nama> | hapus <nomor>");
     Messages_SendSystem(playerid,
         "Radio: /radiostation | tambah <nama> <genre> <url> | hapus <nomor> | reload");
+    Messages_SendSystem(playerid,
+        "Lokasi: /buatbensin [nama] /buatbengkel [nama] (di posisimu)");
     Messages_SendSystem(playerid,
         "Pemain: /agive <id> <jumlah> | /beriitem <id> <item> <jumlah>");
     Messages_SendSystem(playerid,
