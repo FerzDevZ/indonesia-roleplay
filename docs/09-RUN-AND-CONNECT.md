@@ -187,11 +187,25 @@ dibunuh `SIGSYS` tepat setelah start (`code=killed, signal=SYS`). Menjalankan ma
 user biasa normal. Karena itu dipakai supervisor sendiri:
 
 ```bash
+./scripts/start.sh          # start background (idempoten: aman dipanggil 2x)
 ./scripts/supervise.sh      # loop: jalankan server, restart 5 detik kalau mati
-./scripts/stop.sh           # berhenti rapi
+./scripts/stop.sh           # berhenti rapi (supervisor dulu, lalu server)
 crontab -l                  # sudah ada entri @reboot untuk supervise.sh
 tail -f server/scriptfiles/console.log
 ```
+
+Aturan operasional yang wajib dipatuhi:
+
+1. **Satu supervisor saja.** `supervise.sh` menolak jalan kalau PID di
+   `server/scriptfiles/.supervisor.pid` masih hidup. Tanpa penjaga ini, setiap
+   `./scripts/supervise.sh &` menambah supervisor + `omp-server` baru; pernah
+   terjadi 17 proses menumpuk dan semuanya mengikat UDP 7777.
+2. **Hentikan lewat `stop.sh`.** Urutannya supervisor dulu baru server, kalau
+   dibalik supervisor langsung menghidupkan server kembali. `stop.sh` juga
+   membersihkan sisa supervisor dari sesi lama dan memverifikasi port 7777 bebas.
+3. **Jangan `pkill -f omp-server`.** Pola itu mencocokkan command line
+   supervisor dan shell pemanggil. Pakai `pgrep -x omp-server` (nama proses
+   persis) atau `stop.sh`.
 
 ---
 

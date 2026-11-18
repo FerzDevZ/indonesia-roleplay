@@ -11,8 +11,17 @@ if pgrep -x omp-server >/dev/null; then
 else
     echo "  server   : MATI (jalankan ./scripts/supervise.sh)"
 fi
-if pgrep -f "scripts/supervise.sh" >/dev/null; then
-    echo "  supervisor: jalan"
+# Supervisor dicek dari PID file + cmdline persis (`bash .../supervise.sh`).
+# `pgrep -f supervise.sh` saja bisa salah positif oleh shell lain yang command
+# line-nya memuat teks itu (mis. perintah start manual di terminal).
+SUP_PID_FILE="$ROOT/server/scriptfiles/.supervisor.pid"
+sup_pid=""
+if [ -f "$SUP_PID_FILE" ]; then
+    sup_pid=$(tr -dc '0-9' < "$SUP_PID_FILE")
+fi
+if [ -n "$sup_pid" ] && kill -0 "$sup_pid" 2>/dev/null \
+        && tr '\0' ' ' < "/proc/$sup_pid/cmdline" 2>/dev/null | grep -q 'supervise\.sh'; then
+    printf '  supervisor: jalan (pid %s)\n' "$sup_pid"
 else
     echo "  supervisor: tidak jalan (server tidak akan auto-restart)"
 fi
