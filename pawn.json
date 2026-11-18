@@ -1,0 +1,36 @@
+{
+  "user": "your-org",
+  "repo": "rp-indonesia",
+  "entry": "gamemode.pwn",
+  "output": "gamemodes/rp-indonesia.amx",
+  "preset": "openmp",
+  "dependencies": [
+    "openmultiplayer/omp-stdlib",
+    "pawn-lang/samp-stdlib@open.mp",
+    "pawn-lang/pawn-stdlib@open.mp",
+    "pawn-lang/YSI-Includes",
+    "samp-incognito/samp-streamer-plugin",
+    "Southclaws/sscanf2",
+    "Southclaws/formatex",
+    "pBlueG/SA-MP-MySQL",
+    "Southclaws/bcrypt"
+  ],
+  "runtime": {
+    "runtime_type": "openmp",
+    "version": "1.6.7.3218",
+    "port": 7777,
+    "hostname": "Roleplay Indonesia",
+    "maxplayers": 200,
+    "rcon_password": "ganti-di-produksi"
+  },
+  "build": {
+    "compiler": { "preset": "openmp" },
+    "options": {
+      "debug_level": 3,
+      "require_semicolons": true,
+      "require_parentheses": true,
+      "show_warnings": true,
+      "optimization_level": 1
+    }
+  }
+}

@@ -1,0 +1,18 @@
+# --- Runtime server (binary, DB pemain, log, config rahasia) ---
+server/
+
+# --- Cadangan lokal (berisi dump DB) ---
+backups/
+
+# --- Tooling lokal: compiler pawn & koleksi skill agent ---
+.tools/
+.agents/
+.freebuff/
+
+# --- Hasil build ---
+*.amx
+*.log
+
+# --- OS / editor ---
+.DS_Store
+*~

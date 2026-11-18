@@ -1,0 +1,75 @@
+name: Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  compile-and-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install sampctl
+        run: |
+          curl -sL https://raw.githubusercontent.com/Southclaws/sampctl/master/install.sh | sh
+          sudo mv bin/sampctl /usr/local/bin/
+          sampctl version
+
+      - name: Install Pawn compiler
+        run: sampctl package ensure
+
+      - name: Compile (warnings are errors)
+        run: sampctl package build
+
+      - name: Gate 1 - no forbidden loops
+        run: |
+          if grep -rn "i < MAX_PLAYERS" src/ 2>/dev/null; then
+            echo "::error::Pakai foreach, bukan loop MAX_PLAYERS"
+            exit 1
+          fi
+
+      - name: Gate 2 - no raw MySQL outside core
+        run: |
+          if grep -rn "mysql_tquery\|mysql_pquery\|mysql_query" src/domain 2>/dev/null; then
+            echo "::error::Query DB di luar core/db"
+            exit 1
+          fi
+
+      - name: Gate 3 - no hardcoded dialog ids
+        run: |
+          if grep -rnE "ShowPlayerDialog\([^,]+, *[0-9]+," src/ 2>/dev/null; then
+            echo "::error::Dialog ID harus dari enum E_DIALOG_ID"
+            exit 1
+          fi
+
+      - name: Gate 4 - no stubs
+        run: |
+          if grep -rn "TODO\|FIXME\|implement later" src/ 2>/dev/null; then
+            echo "::error::Stub dilarang"
+            exit 1
+          fi
+
+      - name: Gate 5 - file size budget
+        run: |
+          bad=$(find src -name '*.pwn' -exec wc -l {} + 2>/dev/null | awk '$2 != "total" && $1 > 400 {print $1, $2}')
+          if [ -n "$bad" ]; then
+            echo "$bad"
+            echo "::error::File maksimal 400 baris"
+            exit 1
+          fi
+
+      - name: Gate 6 - object budget
+        run: |
+          count=$(grep -rc "CreateObject(" src/ 2>/dev/null | awk -F: '{s+=$2} END {print s+0}')
+          echo "objek fisik: $count"
+          if [ "$count" -gt 400 ]; then
+            echo "::error::Budget objek fisik 400 terlampaui (client 0.3.7 hanya 1000)"
+            exit 1
+          fi
+
+      - name: Gate 7 - json validity
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('pawn.json','utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('config.json.example','utf8'))"

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://open.mp/schemas/config.json",
+  "name": "Roleplay Indonesia",
+  "hostname": "Roleplay Indonesia | Serius tapi santai",
+  "max_players": 200,
+  "port": 7777,
+  "password": "",
+  "rcon": {
+    "password": "${RCON_PASSWORD}",
+    "enable": true
+  },
+  "network": {
+    "allow_037_clients": true,
+    "public_addr": "${PUBLIC_ADDR}"
+  },
+  "pawn": {
+    "main_scripts": ["rp-indonesia 1"],
+    "legacy_plugins": ["mysql", "streamer", "sscanf", "bcrypt"],
+    "side_scripts": []
+  },
+  "artwork": {
+    "enable": true,
+    "models_path": "models",
+    "cdn": "${ARTWORK_CDN}",
+    "show_crc_logs": false
+  },
+  "game": {
+    "weather": 10,
+    "time": 12,
+    "map_name": "San Andreas",
+    "gravity": "0.008",
+    "lag_compensation_mode": 1
+  },
+  "stream": {
+    "distance": 300.0,
+    "rate": 1000
+  },
+  "logging": {
+    "log_chat": true,
+    "log_queries": false,
+    "timestamp_format": "[%H:%M:%S]"
+  }
+}
