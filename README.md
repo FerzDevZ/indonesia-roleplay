@@ -16,6 +16,8 @@ tanpa plugin dan tanpa YSI. Satu server melayani klien **open.mp 1.6.x** dan
 - Pekerjaan kurir, layanan ATM, rumah sakit, job center, ikon radar.
 - Rental kendaraan dinamis: paket & titik sewa diatur admin in-game, batas
   waktu, kunci pintu, pembersihan otomatis (`docs/15`).
+- Dealer + kendaraan pribadi + STNK: katalog dari DB, plat unik, parkir
+  menyimpan posisi, maksimal 3 unit per karakter (`docs/16`).
 - Admin: level 1-5, audit setiap tindakan, pembuatan ATM/warung/gedung runtime.
 
 ## Teknologi
@@ -76,3 +78,4 @@ Ringkasnya (lengkap di `docs/08-PAWN-STANDARDS.md`):
 | `docs/13-MAPPING-INTERIOR.md` | geometri mapping interior |
 | `docs/14-FRAKSI-RANCANGAN.md` | rancangan fraksi (PD/EMS/gang) |
 | `docs/15-KENDARAAN-RENTAL.md` | kendaraan sewaan dinamis |
+| `docs/16-KENDARAAN-PRIBADI.md` | dealer, kendaraan pribadi, STNK |

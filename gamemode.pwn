@@ -70,6 +70,10 @@
 #include "src/domain/vehicle/vehicle_rental_data.pwn"
 #include "src/domain/vehicle/vehicle_rental.pwn"
 #include "src/domain/vehicle/vehicle_rental_admin.pwn"
+// kendaraan pribadi: katalog dealer -> pemilik -> UI dealer/STNK.
+#include "src/domain/vehicle/vehicle_catalog.pwn"
+#include "src/domain/vehicle/vehicle_owner.pwn"
+#include "src/domain/vehicle/vehicle_shop.pwn"
 // interiors butuh API Property_*; property_manage butuh Interiors_*.
 #include "src/domain/world/interiors.pwn"
 #include "src/domain/warung/warung_admin.pwn"
@@ -118,6 +122,8 @@ main() {
     Property_Boot();
     Interiors_Boot();
     Vehicle_Boot();
+    VehicleCatalog_Boot();
+    VehicleOwned_Boot();
     VehicleRental_Boot();
     Admin_Boot();
 

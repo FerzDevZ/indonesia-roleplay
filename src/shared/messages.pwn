@@ -39,6 +39,7 @@
 #define DIALOG_PROP_ADDITEM     (16)  // kelola gedung: tambah menu (KODE harga)
 #define DIALOG_PROP_SALE        (17)  // gedung dijual: konfirmasi beli
 #define DIALOG_RENTAL_LIST      (18)  // rental kendaraan: pilih paket
+#define DIALOG_DEALER_LIST      (19)  // dealer kendaraan: pilih unit
 
 
 #define MSG_WELCOME         "Selamat datang, %s. Silakan login."
@@ -108,7 +109,8 @@ stock bool:Dialog_IsKnown(dialogid) {
              DIALOG_ADMIN_MENU, DIALOG_IDENTITY_PICK, DIALOG_IDENTITY_INPUT,
              DIALOG_BANK_TARGET, DIALOG_BANK_AMOUNT, DIALOG_BANK_MUTASI,
              DIALOG_PROP_MENU, DIALOG_PROP_PICKITEM, DIALOG_PROP_PRICE,
-             DIALOG_PROP_ADDITEM, DIALOG_PROP_SALE: {
+             DIALOG_PROP_ADDITEM, DIALOG_PROP_SALE,
+             DIALOG_RENTAL_LIST, DIALOG_DEALER_LIST: {
             return true;
         }
     }

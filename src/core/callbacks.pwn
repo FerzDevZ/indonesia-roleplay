@@ -51,6 +51,8 @@ public OnPlayerConnect(playerid) {
 
 public OnPlayerDisconnect(playerid, reason) {
     Vehicle_DespawnOf(playerid);
+    VehicleOwned_Save(playerid);
+    VehicleOwned_Reset(playerid);
     Survival_Save(playerid);
     Character_Save(playerid);
 
@@ -95,6 +97,7 @@ public OnPlayerSpawn(playerid) {
         Prompt_Destroy(playerid);
         HUD_Show(playerid);
         Inv_Load(playerid);
+        VehicleOwned_Load(playerid, Character_GetId(playerid));
         Survival_OnSpawn(playerid);
         Interiors_Reset(playerid);
         Toast_Show(playerid, "SELAMAT DATANG", "Jalani roleplay dengan baik.", THEME_ACCENT);
@@ -104,8 +107,10 @@ public OnPlayerSpawn(playerid) {
 
 public OnPlayerDeath(playerid, killerid, WEAPON:reason) {
     #pragma unused killerid, reason
-    // Kendaraan sewaan hilang saat pemain tewas: mencegah kendaraan telantar.
+    // Kendaraan hilang saat pemain tewas: mencegah kendaraan telantar.
     Vehicle_DespawnOf(playerid);
+    VehicleOwned_Save(playerid);
+    VehicleOwned_Destroy(playerid);
     return 1;
 }
 
@@ -128,6 +133,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
     if (BankUI_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (Property_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (VehicleRental_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
+    if (VehicleShop_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (Admin_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     return 0;
 }
@@ -222,6 +228,8 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
     if (Survival_HandleCommand(playerid, command, params)) return 1;
     if (VehicleRental_HandleCommand(playerid, command, params)) return 1;
     if (VehicleRentalAdmin_HandleCommand(playerid, command, params)) return 1;
+    if (VehicleShop_HandleCommand(playerid, command, params)) return 1;
+    if (VehicleShop_AdminCommand(playerid, command, params)) return 1;
     if (Identity_HandleCommand(playerid, command, params)) return 1;
     if (Tilang_HandleCommand(playerid, command, params)) return 1;
     if (WarungAdmin_HandleCommand(playerid, command, params)) return 1;
@@ -247,6 +255,7 @@ public Timer_OnAutoSave() {
 
     for (new index = 0; index < count; index++) {
         if (Character_GetId(players[index]) > 0) {
+            VehicleOwned_Save(players[index]);
             Character_Save(players[index]);
         }
     }

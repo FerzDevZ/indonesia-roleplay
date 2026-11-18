@@ -50,6 +50,9 @@
 #define LOC_ACT_GEDUNG      "GEDUNG"
 #define LOC_ACT_RS          "RS"
 #define LOC_ACT_RENTAL      "RENTAL"
+#define LOC_ACT_DEALER      "DEALER"
+
+#define LOC_MAP_ICON_DEALER (55)    // ikon mobil (dealer)
 
 #define RS_PRICE            (10000)
 
@@ -86,6 +89,8 @@ stock Locations_Boot() {
         1173.0, -1323.5, 15.0, 4.0);
     Locations_Seed("RENTAL_STASIUN", "Rental Stasiun Unity", LOC_ACT_RENTAL,
         1766.4, -1906.0, 13.5, 3.0);
+    Locations_Seed("DEALER_STASIUN", "Dealer Stasiun Unity", LOC_ACT_DEALER,
+        1750.0, -1898.0, 13.5, 3.0);
 
     gLocCount = 0;
     new query[128];
