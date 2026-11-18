@@ -138,6 +138,8 @@ static bool:Chat_HelpMain(playerid) {
         "Kendaraan: /isi penuh di pom bensin, /servis di bengkel");
     Messages_SendSystem(playerid, "Tujuan awal: /tujuan");
     Messages_SendSystem(playerid,
+        "Latihan tembak: /latihan (di lokasi latihan) | rekor: /rekor");
+    Messages_SendSystem(playerid,
         "Dokumen: /ktp /sim /ujisim /datadiri | Lalu lintas: /tilang");
     Messages_SendSystem(playerid,
         "Bantuan lain: /help toko | /help admin | /lapor <masalah>");

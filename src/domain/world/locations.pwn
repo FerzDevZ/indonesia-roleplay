@@ -53,10 +53,12 @@
 #define LOC_ACT_DEALER      "DEALER"
 #define LOC_ACT_BENSIN      "BENSIN"
 #define LOC_ACT_BENGKEL     "BENGKEL"
+#define LOC_ACT_LATIHAN     "LATIHAN"
 
 #define LOC_MAP_ICON_DEALER (55)    // ikon mobil (dealer)
 #define LOC_MAP_ICON_BENSIN (52)    // ikon dolar: layanan berbayar (bensin)
 #define LOC_MAP_ICON_BENGKEL (55)   // ikon mobil: perbaikan kendaraan
+#define LOC_MAP_ICON_LATIHAN (17)   // ikon info: arena latihan tembak
 
 #define RS_PRICE            (10000)
 

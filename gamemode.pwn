@@ -51,6 +51,9 @@
 #include "src/domain/chat/chat.pwn"
 #include "src/domain/world/locations.pwn"
 #include "src/domain/world/locations_seed.pwn"
+#include "src/domain/range/range_data.pwn"
+#include "src/domain/range/range.pwn"
+#include "src/domain/range/range_cmd.pwn"
 #include "src/domain/world/locations_label.pwn"
 #include "src/domain/world/locations_actions.pwn"
 #include "src/domain/identity.pwn"
@@ -135,6 +138,7 @@ main() {
     VehicleRental_Boot();
     Radio_Boot();
     Onboarding_Boot();
+    Range_Boot();
     Admin_Boot();
 
     Log_Info("boot", "siap");

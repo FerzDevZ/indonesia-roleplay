@@ -23,6 +23,7 @@ static Locations_MapIconOf(const action[]) {
     if (strcmp(action, LOC_ACT_DEALER, false) == 0) return LOC_MAP_ICON_DEALER;
     if (strcmp(action, LOC_ACT_BENSIN, false) == 0) return LOC_MAP_ICON_BENSIN;
     if (strcmp(action, LOC_ACT_BENGKEL, false) == 0) return LOC_MAP_ICON_BENGKEL;
+    if (strcmp(action, LOC_ACT_LATIHAN, false) == 0) return LOC_MAP_ICON_LATIHAN;
     return LOC_MAP_ICON_INFO;
 }
 
@@ -119,6 +120,9 @@ stock bool:Locations_Activate(playerid, index) {
         Messages_SendSystem(playerid,
             "Bengkel: ketik /servis untuk memperbaiki kendaraanmu.");
         return true;
+    }
+    if (strcmp(action, LOC_ACT_LATIHAN, false) == 0) {
+        return Range_Open(playerid);
     }
     if (strcmp(action, LOC_ACT_LOKET_PD, false) == 0) {
         Messages_SendSystem(playerid,

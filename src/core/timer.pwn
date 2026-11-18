@@ -23,6 +23,7 @@ forward Timer_OnToastTick();
 forward Timer_OnPromptTick();
 forward Timer_OnFuelTick();
 forward Timer_OnOnboardingTick();
+forward Timer_OnRangeTick();
 
 #define MAX_REGISTERED_TIMERS (16)
 

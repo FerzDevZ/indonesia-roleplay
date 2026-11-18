@@ -38,5 +38,7 @@ stock Locations_SeedDefaults() {
         1740.0, -1918.0, 13.0, 4.0);
     Locations_Seed("DEALER_STASIUN", "Dealer Stasiun Unity", LOC_ACT_DEALER,
         1750.0, -1898.0, 13.5, 3.0);
+    Locations_Seed("LATIHAN_STASIUN", "Latihan Tembak Stasiun Unity", LOC_ACT_LATIHAN,
+        1712.0, -1890.0, 12.5, 3.0);
     return 1;
 }

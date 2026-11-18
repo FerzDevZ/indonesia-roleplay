@@ -56,6 +56,7 @@ public OnPlayerDisconnect(playerid, reason) {
     VehicleOwned_Reset(playerid);
     Radio_Reset(playerid);
     Onboarding_Reset(playerid);
+    Range_Reset(playerid);
     Survival_Save(playerid);
     Character_Save(playerid);
 
@@ -108,6 +109,13 @@ public OnPlayerSpawn(playerid) {
         Interiors_Reset(playerid);
         Toast_Show(playerid, "SELAMAT DATANG", "Jalani roleplay dengan baik.", THEME_ACCENT);
     }
+    return 1;
+}
+
+// Latihan tembak: posisi peluru diverifikasi server-side, bukan dari klien.
+public OnPlayerWeaponShot(playerid, WEAPON:weaponid, BULLET_HIT_TYPE:hittype,
+    hitid, Float:fX, Float:fY, Float:fZ) {
+    Range_OnWeaponShot(playerid, weaponid, hittype, hitid, fX, fY, fZ);
     return 1;
 }
 
@@ -167,6 +175,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
     if (VehicleRental_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (VehicleShop_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (Radio_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
+    if (Range_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     if (Admin_OnDialogResponse(playerid, dialogid, response, listitem, inputtext)) return 1;
     return 0;
 }
@@ -266,6 +275,7 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
     if (Radio_HandleCommand(playerid, command, params)) return 1;
     if (Fuel_HandleCommand(playerid, command, params)) return 1;
     if (Onboarding_HandleCommand(playerid, command, params)) return 1;
+    if (Range_HandleCommand(playerid, command, params)) return 1;
     if (VehicleShop_AdminCommand(playerid, command, params)) return 1;
     if (Identity_HandleCommand(playerid, command, params)) return 1;
     if (Tilang_HandleCommand(playerid, command, params)) return 1;

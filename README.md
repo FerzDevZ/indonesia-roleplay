@@ -21,6 +21,8 @@ tanpa plugin dan tanpa YSI. Satu server melayani klien **open.mp 1.6.x** dan
 - Bensin + bengkel: penguras uang rutin pertama, `/isi` dan `/servis` di lokasi
   `BENSIN`/`BENGKEL` (`docs/18`).
 - Objektif pemain baru 5 langkah (`/tujuan`) dengan HUD sendiri (`docs/18`).
+- Arena latihan tembak: 3 mode senjata, 90 detik, skor server-side, `/rekor`
+  (`docs/19`).
 - Radio in-game: stasiun dari DB, tile MUSIK di ponsel, radio mobil otomatis
   (`docs/17`). Fase 2 menyiapkan lapisan metadata Spotify (bukan audio).
 - Admin: level 1-5, audit setiap tindakan, pembuatan ATM/warung/gedung runtime.
@@ -86,3 +88,4 @@ Ringkasnya (lengkap di `docs/08-PAWN-STANDARDS.md`):
 | `docs/16-KENDARAAN-PRIBADI.md` | dealer, kendaraan pribadi, STNK |
 | `docs/17-MUSIK-RADIO.md` | radio in-game & rencana hybrid Spotify |
 | `docs/18-BENSIN-SERVIS-OBJEKTIF.md` | bensin, servis, objektif pemain baru |
+| `docs/19-LATIHAN-TEMBAK.md` | arena latihan tembak & anti-curang skor |
